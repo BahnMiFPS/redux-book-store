@@ -41,7 +41,6 @@ const HomePage = () => {
 	useEffect(() => {
 		dispatch(fetchBook({ pageNum, limit, query }))
 	}, [dispatch, pageNum, limit, query])
-	console.log(loading)
 
 	const handleClickBook = (bookId) => {
 		navigate(`/books/${bookId}`)
@@ -58,13 +57,15 @@ const HomePage = () => {
 	const onSubmit = (data) => {
 		setQuery(data.searchQuery)
 	}
+	console.log("error:", errorMessage)
+
 	return (
 		<Container>
 			<Stack sx={{ display: "flex", alignItems: "center", m: "2rem" }}>
 				<Typography variant="h3" sx={{ textAlign: "center" }}>
 					Book Store
 				</Typography>
-				{errorMessage && <Alert severity="danger">{errorMessage}</Alert>}
+				{errorMessage && <Alert severity="error">{errorMessage}</Alert>}
 				<FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
 					<Stack
 						spacing={2}
